@@ -1,21 +1,24 @@
-import pyupbit
+from trade import buy_market, sell_market
+from dotenv import load_dotenv
 import api
+import os
 
-# upbit API 연결
-upbit = pyupbit.Upbit(api.access, api.secret)
+def main():
+  amount = int(os.getenv("BUY_AMOUNT"))
+  ticker = os.getenv("TICKER")
+  
+  #내 잔고 조회
+  krw = api.get_balance("KRW")
+
+  if krw > amount:
+    buy_market(ticker, amount)
+  #내 코인 수량 조회
+  btc = api.get_balance("BTC")
+  print(btc)
+
+  if btc > 0:
+     sell_market("KRW-BTC", btc)
 
 
-# 비트코인 가격 조회
-price = pyupbit.get_current_price("KRW-BTC")
-
-# 내 잔고 조회
-balance = upbit.get_balance("KRW")
-
-#가격 보기좋게 설정
-def get_price(price):
-  return f"{price:,.0f}원"
-
-print(get_price(balance))
-print(get_price(price))
-
-
+if __name__ == "__main__":
+    main()
