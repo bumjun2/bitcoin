@@ -1,0 +1,26 @@
+# Python 기본
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 가상환경
+venv/
+env/
+
+# 환경변수 (API 키)
+.env
+config.py
+
+# 로그 / 데이터
+*.log
+*.csv
+
+# OS (맥)
+.DS_Store
+
+# VSCode
+.vscode/
+
+# 기타
+*.sqlite3
